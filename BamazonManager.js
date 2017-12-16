@@ -4,7 +4,7 @@
 
 
 
-// Require prompt node package 
+// Require prompt node package
 var prompt = require('prompt');
 
 // Require mySQL node package
@@ -42,7 +42,7 @@ connection.connect(function(err) {
   console.log('4. Add New Product');
 
   prompt.get(['menuSelection'], function (err, result) {
-    
+
     // Switch Case for different options
     var menuSelection = parseInt(result.menuSelection);
 
@@ -52,13 +52,13 @@ connection.connect(function(err) {
           viewProducts(function(){}); // note that this function uses a callback :)
           connection.end(); // end the script/connection
           break;
-      
+
       case 2:
           console.log('\nView Low Inventory...');
           viewLowInventory();
           connection.end(); // end the script/connection
           break;
-      
+
       case 3:
         console.log('\nAdd to Inventory...');
         addInventory();
@@ -74,7 +74,7 @@ connection.connect(function(err) {
         connection.end(); // end the script/connection
 
     } // end switch case
-    
+
   }); // end switch case prompt
 
 }); // end connection
@@ -104,7 +104,7 @@ function viewProducts(callback){
     for(var i = 0; i < res.length; i++){
 
       // ---------- Add in padding for table ----------
-      var itemID = res[i].ItemID + ''; // convert to string
+      var itemID = res[i].itemID + ''; // convert to string
       itemID = padText("  ID  ", itemID);
 
       var productName = res[i].ProductName + ''; // convert to string
@@ -133,7 +133,7 @@ function viewProducts(callback){
 function viewLowInventory(){
    // Display All Items inside Database lower than 5 in stock
   connection.query('SELECT * FROM Products WHERE StockQuantity < 5', function(err, res){
-  
+
     // Error Handler
     if(err) throw err;
 
@@ -143,12 +143,12 @@ function viewLowInventory(){
     // Set up table header
     console.log('  ID  |      Product Name      |  Department Name  |   Price  | In Stock');
     console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ')
-    
+
     // Loop through database and show all items
     for(var i = 0; i < res.length; i++){
 
       // ---------- Add in padding for table ----------
-      var itemID = res[i].ItemID + ''; // convert to string
+      var itemID = res[i].itemID + ''; // convert to string
       itemID = padText("  ID  ", itemID);
 
       var productName = res[i].ProductName + ''; // convert to string
@@ -177,7 +177,7 @@ function viewLowInventory(){
 
 // Add to Inventory
 function addInventory(){
-  
+
   // Running the View Products Function (case 1) and then asking user for unput after callback
   viewProducts(function(){
 
@@ -185,7 +185,7 @@ function addInventory(){
     prompt.start();
     console.log('\nWhich item do you want to restock?');
     prompt.get(['restockItemID'], function (err, result) {
-      
+
       // Show Item ID selected
       var restockItemID = result.restockItemID;
       console.log('You selected to re-stock Item # ' + restockItemID + '.');
@@ -193,7 +193,7 @@ function addInventory(){
       // Prompt for how many more items
       console.log('\nHow many items will you restock?');
       prompt.get(['restockCount'], function(err, result){
-        
+
         //Show Restock Count selected
         var restockCount = result.restockCount;
         console.log('You selected to re-stock ' + restockCount + ' items.');
@@ -206,14 +206,14 @@ function addInventory(){
 
             // Check if the item Id was valid (i.e. something was returned from mySQL)
             if(res[0] == undefined){
-              
+
               console.log('Sorry... We found no items with Item ID "' +  restockItemID + '"');
               connection.end(); // end the script/connection
 
             }
             // Valid Item ID, so add Bamazon Inventory with stowing quantity <-- more Bamazon lingo ;)
             else{
-              
+
               var bamazonQuantity = res[0].StockQuantity;
               var newInventory = parseInt(bamazonQuantity) + parseInt(restockCount); // ensure integers
 
@@ -225,7 +225,7 @@ function addInventory(){
                 connection.end(); // end the script/connection
 
               }); // end inventory update query
-            
+
             }
 
           }); // end current quantity query

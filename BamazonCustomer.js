@@ -129,10 +129,10 @@ connection.query('SELECT * FROM Products', function(err, res){
                 connection.query('SELECT TotalSales FROM Departments WHERE ?', [{DepartmentName: itemDepartment}], function(err, res){
                     console.log(res)
                   var totalSales = res[0].TotalSales;
-                    // console.log(TotalSales)
+
                   // Calculate new sale revenue
                   var totalSales = parseFloat(totalSales) + parseFloat(customerTotal);
-                    // console.log(totalSales)
+
                   // Add the revenue from each transaction to the TotalSales column for the related department.
                   connection.query('UPDATE Departments SET ? WHERE ?', [{TotalSales: totalSales}, {DepartmentName: itemDepartment}], function(err, res){
                     if(err) throw err; // Error Handler
@@ -140,12 +140,12 @@ connection.query('SELECT * FROM Products', function(err, res){
                     connection.end(); // end the script/connection
 
                   }); // end new revenue update query
-      
+
                 }); // end current revenue query
 
-              }); // end department name query 
+              }); // end department name query
               // -------------------------------------------------------------------------------------
-            }); // end customer purchase update query 
+            }); // end customer purchase update query
           }
           // Insufficient inventory
           else{
