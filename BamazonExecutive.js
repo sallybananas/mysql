@@ -40,7 +40,7 @@ connection.connect(function(err) {
   console.log('2. Create New Department');
 
   prompt.get(['menuSelection'], function (err, result) {
-    
+
     // Switch Case for different options
     var menuSelection = parseInt(result.menuSelection);
 
@@ -62,7 +62,7 @@ connection.connect(function(err) {
   });
 
 }); // end database connection
-    
+
 
 
 // =================== Functions to be used inside the switch case ===================
@@ -73,7 +73,7 @@ function viewSalesByDept(){
 
   // Query for all of the Department Table
   connection.query('SELECT * FROM Departments', function(err, res){
-  
+
     // Error Handler
     if(err) throw err;
 
@@ -81,15 +81,16 @@ function viewSalesByDept(){
     // Set up table header
     console.log('\n' + '  ID  |  Department Name  |  OverHead Costs |  Product Sales  |  Total Profit');
     console.log('- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
-    
+
     // Loop through database and show all items
     for(var i = 0; i < res.length; i++){
 
       // ---------- Add in padding for table ----------
-      var departmentID = res[i].DepartmentID + ''; // convert to string
+      var departmentID = res[i].itemID + ''; // convert to string
       departmentID = padText("  ID  ", departmentID);
 
-      var departmentName = res[i].DepartmentName + ''; // convert to string
+      var departmentName = res[i].DepartmentName
+      // DepartmentName + ''; // convert to string
       departmentName = padText("  Department Name  ", departmentName);
 
       // On the fly calculation for profit
@@ -106,7 +107,7 @@ function viewSalesByDept(){
       // Padding for table
       overHeadCost = padText("  OverHead Costs ", overHeadCost);
       totalSales = padText("  Product Sales  ", totalSales);
-      
+
       // ----------------------------------------------
 
       // Log table entry

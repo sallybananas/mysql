@@ -1,4 +1,4 @@
-# :collision: BAMazon :computer: :package:
+# :collision: Bamazon :computer: :package:
 
 ### Overview
 A Node.js &amp; MySQL digital storefront. This is a command line Node app that mimics a beloved online retailer.
@@ -13,7 +13,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
 - `BamazonManager.js` _([See example here](#manager))_
   - Mimics the basics of a warehouse management system, providing managers with a list of options to view stock and adjust inventory.
   - A sample of the menu is below:
-    * View Products for Sale 
+    * View Products for Sale
     * View Low Inventory
     * Add to Inventory
     * Add New Product
@@ -21,7 +21,7 @@ Three JavaScript files replicate the basics of a simple ecommerce engine:
 - `BamazonExecutive.js` _([See example here](#executive))_
   - Simulates very basic profit and sales insights for upper management.
   - A sample of the menu is below:
-    * View Product Sales by Department 
+    * View Product Sales by Department
     * Create New Department
 
 
@@ -34,7 +34,7 @@ The JavaScript files mentioned above query a MySQL database called `Bamazon` whi
 
     1. If you are new to MySQL, please set up [MySQL](http://dev.mysql.com/downloads/mysql/) and [MySQL Workbench](http://dev.mysql.com/downloads/workbench/) on your laptop and then open up to your localhost connection.
     2. Run `CREATE DATABASE Bamazon;` in mySQL Workbench.
-    3. Be sure to select the correct database by running the `USE Bamazon;` 
+    3. Be sure to select the correct database by running the `USE Bamazon;`
     4. Refer to the raw SQL commands under the _`=== First Table ===`_ comment to set up the `Products` table.
     5. Refer to the raw SQL commands under the _`=== Second Table ===`_ comment to set up the `Departments` table.
 
@@ -83,6 +83,5 @@ Below are some screenshots that show the functionality of the app.
       ![Executive 1](/example_images/BamazonExecutive-1.png)
     - The executive can choose option `2` to add a new department.
       ![Executive 2a](/example_images/BamazonExecutive-2a.png)
-      - Notice how the department list was adjusted from step `2`.
-        ![Executive 2a](/example_images/BamazonExecutive-2b.png)
+
       - Also note that the manager can add a new item to the department and if a customer buys said item, it will cause total sales and profit to increase in that department.# mysql
